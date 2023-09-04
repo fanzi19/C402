@@ -11,7 +11,7 @@ int main() {
         // Create random number generators for dimensions and values
         std::random_device rd;
         std::mt19937 gen(rd());
-        std::uniform_int_distribution<int> dim_distribution(2, 5);  // Adjust the range for dimensions as needed
+        std::uniform_int_distribution<int> dim_distribution(200, 500);  // Adjust the range for dimensions as needed
         std::uniform_int_distribution<int> value_distribution(1, 10); // Adjust the range for values as needed
 
         // Generate random dimensions for the two matrices
