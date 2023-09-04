@@ -26,7 +26,7 @@ max_lines_per_url = 100
 
 # Save data from each URL to a separate file
 for i, url in enumerate(urls):
-    if url = 'http://www.cs.iit.edu/~virgil/cs470/varia/traces/benchmarks/spice.din'
+    if url == 'http://www.cs.iit.edu/~virgil/cs470/varia/traces/benchmarks/spice.din':
       file_name = f'spice.txt'
     else:
       file_name = f'cc1.txt'
