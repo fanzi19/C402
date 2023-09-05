@@ -4,27 +4,21 @@
 #include <chrono>
 
 int main() {
-    const int numTests = 10;  // Number of times to run the matrix multiplication
+    const int numTests = 10;   // Number of times to run the matrix multiplication
     double totalDuration = 0.0;  // Total duration of all tests
 
     for (int test = 0; test < numTests; ++test) {
         // Create random number generators for dimensions and values
         std::random_device rd;
         std::mt19937 gen(rd());
-        std::uniform_int_distribution<int> dim_distribution(200, 500);  // Adjust the range for dimensions as needed
-        std::uniform_int_distribution<int> value_distribution(1, 10); // Adjust the range for values as needed
+        std::uniform_int_distribution<int> dim_distribution(600, 700);   
+        std::uniform_int_distribution<int> value_distribution(1, 10); 
 
         // Generate random dimensions for the two matrices
         int numRows1 = dim_distribution(gen);
         int numCols1 = dim_distribution(gen);
         int numRows2 = numCols1; // The number of columns in matrix 1 must match the number of rows in matrix 2
         int numCols2 = dim_distribution(gen);
-
-        // Check if the matrices can be multiplied
-        if (numCols1 != numRows2) {
-            std::cerr << "Matrix dimensions are incompatible for multiplication." << std::endl;
-            return 1; // Exit the program with an error code
-        }
 
         // Create and fill the first random matrix
         std::vector<std::vector<int> > matrix1(numRows1, std::vector<int>(numCols1));
@@ -45,12 +39,12 @@ int main() {
         // Measure the execution time
         auto start_time = std::chrono::high_resolution_clock::now();
 
-        // Perform matrix multiplication and store the result in 'result'
+        // Perform matrix multiplication with rows in the inner loop and store the result in 'result'
         std::vector<std::vector<int> > result(numRows1, std::vector<int>(numCols2, 0));
 
         for (int i = 0; i < numRows1; ++i) {
-            for (int j = 0; j < numCols2; ++j) {
-                for (int k = 0; k < numCols1; ++k) {
+            for (int k = 0; k < numCols1; ++k) {
+                for (int j = 0; j < numCols2; ++j) {
                     result[i][j] += matrix1[i][k] * matrix2[k][j];
                 }
             }
